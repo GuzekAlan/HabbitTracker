@@ -1,0 +1,25 @@
+type Habit {
+    id: ID!
+    name: String!
+    description: String
+    difficulty: Int!
+}
+
+input HabitInput{
+    name: String!
+    description: String
+    difficulty: Int!
+}
+
+# Root
+type Query {
+    getHabit(id: ID!): Habit
+    getHabits: [Habit]
+}
+
+type Mutation {
+    createHabit(name: String!, description: String, difficulty: Int!): Habit
+#    createHabit(input: HabitInput): Habit
+#    updateHabit(id: ID!, input: HabitInput): Habit
+#    deleteHabit(id: ID!): Boolean
+}
