@@ -1,5 +1,6 @@
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import Home from './pages/Home';
+import AddHabit from './pages/AddHabit';
 
 function App() {
 
@@ -8,6 +9,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/add-habit" element={<AddHabit />} />
       </Routes>
     </BrowserRouter>
     </>

@@ -1,7 +1,13 @@
+import Calendar from "../components/Calendar";
+import Header from "../components/Header";
+
 const Home = () => {
     return (
-        <div className="flex items-center justify-center text-2xl text-blue-400">
-            HOME PAGE
+        <div className="flex flex-col w-full items-center justify-center">
+            <div>
+                <Header text='Habit Tracker'/>
+                <Calendar />
+            </div>
         </div>
     );
 };
