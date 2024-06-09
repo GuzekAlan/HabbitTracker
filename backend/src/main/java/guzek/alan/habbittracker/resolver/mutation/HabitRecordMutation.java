@@ -15,6 +15,7 @@ public class HabitRecordMutation {
 
     @MutationMapping
     public HabitRecord createHabitRecord(@Argument Long userId, @Argument Long habitId, @Argument String date) {
+        System.out.println(date);
         return this.habitRecordService.createHabitRecord(userId, habitId, Date.valueOf(date));
     }
 }

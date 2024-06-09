@@ -9,5 +9,5 @@ import java.util.List;
 
 @Repository
 public interface HabitRecordRepository extends JpaRepository<HabitRecord, Long> {
-    List<HabitRecord> findByDateBetweenAndByUser_IdAndHabit_Id(Date from, Date to, Long userId, Long habitId);
+    List<HabitRecord> findByDateBetweenAndUser_IdAndHabit_Id(Date from, Date to, Long userId, Long habitId);
 }

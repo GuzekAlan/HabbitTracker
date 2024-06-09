@@ -30,7 +30,7 @@ public class HabitRecordService {
 
     @Transactional(readOnly = true)
     public List<HabitRecord> getUserHabitRecordsBetween(Long userId, Long habitId, Date beginDate, Date endDate) {
-        return this.habitRecordRepository.findByDateBetweenAndByUser_IdAndHabit_Id(beginDate, endDate, userId, habitId);
+        return this.habitRecordRepository.findByDateBetweenAndUser_IdAndHabit_Id(beginDate, endDate, userId, habitId);
     }
 
     @Transactional
