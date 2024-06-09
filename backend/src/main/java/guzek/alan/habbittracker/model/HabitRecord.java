@@ -2,7 +2,6 @@ package guzek.alan.habbittracker.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.Fetch;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.sql.Date;
@@ -20,8 +19,8 @@ public class HabitRecord {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="habit_id", nullable = false)
-    private Habit habit;
+    @JoinColumn(name="user_habit_id", nullable = false)
+    private UserHabit userHabit;
 
     @DateTimeFormat(pattern  = "dd-mm-yyyy")
     private Date date;

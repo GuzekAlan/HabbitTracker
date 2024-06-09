@@ -10,17 +10,17 @@ import lombok.*;
 @Setter
 @Entity
 @ToString
-public class Habit {
+public class UserHabit {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NonNull
-    private String name;
+    @ManyToOne
+    @JoinColumn(name="habit_id", nullable = false)
+    private Habit habit;
 
-    @NonNull
-    private String color;
-
-    @NonNull
-    private Integer difficulty;
+    @ManyToOne
+    @JoinColumn(name="user_id", nullable = false)
+    private User user;
 }
