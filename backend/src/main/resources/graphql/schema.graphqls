@@ -1,31 +1,24 @@
+type HabitRecord {
+    id: ID!
+    user: User!
+    habit: Habit!
+    date: String!
+
+}
+
 type Habit {
     id: ID!
     name: String!
     color: String!
     difficulty: Int!
+    habitRecords: [HabitRecord]
 }
 
 type User {
     id: ID!
     login: String!
     password: String!
-}
-
-type UserHabit {
-    id: ID!
-    habit: Habit!
-    user: User!
-}
-
-type HabitRecord {
-    id: ID!
-    userHabit: UserHabit!
-    date: String!
-}
-
-input UserHabitsFilters {
-    habitId: ID!
-    userId: ID!
+    habitRecords: [HabitRecord]
 }
 
 input HabitRecordsFilters {
@@ -37,12 +30,13 @@ input HabitRecordsFilters {
 
 type Query {
     habit(id: ID!): Habit
+    userHabits(userId: ID!): [Habit]
+    habitUsers(habitId: ID!): [User]
     habits: [Habit]
-    userHabit(id: ID!): UserHabit
-    userHabits(filters: UserHabitsFilters): [UserHabit]
     user(id: ID!): User
+    authToken(login: String!, password: String!): String
     habitRecord(id: ID!): HabitRecord
-    habitRecords(filters: HabitRecordsFilters): [HabitRecord]
+    habitRecords(userId: ID!, habitId: ID!, dateFrom: String!, dateTo: String!): [HabitRecord]
 }
 
 input HabitInput {
@@ -53,7 +47,6 @@ input HabitInput {
 
 type Mutation {
     createUser(login: String!, password: String!): User
-    createHabit(input: HabitInput!): Habit
-    createUserHabit(userId: ID!, habitId: ID!): UserHabit
-    createHabitRecord(userHabitId: ID!, date: String): HabitRecord
+    createHabit(name: String!, color: String!, difficulty: Int!): Habit
+    createHabitRecord(userId: ID!, habitId: ID!, date: String!): HabitRecord
 }

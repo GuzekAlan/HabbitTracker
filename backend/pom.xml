@@ -10,7 +10,7 @@
     </parent>
     <groupId>guzek.alan</groupId>
     <artifactId>HabitTracker</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>dev</version>
     <name>Habit Tracker</name>
     <description>Habit Tracker</description>
     <properties>

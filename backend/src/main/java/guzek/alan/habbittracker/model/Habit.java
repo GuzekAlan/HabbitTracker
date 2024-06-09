@@ -2,6 +2,7 @@ package guzek.alan.habbittracker.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -23,4 +24,7 @@ public class Habit {
 
     @NonNull
     private Integer difficulty;
+
+    @OneToMany(mappedBy = "habit")
+    private Set<HabitRecord> habitRecords;
 }

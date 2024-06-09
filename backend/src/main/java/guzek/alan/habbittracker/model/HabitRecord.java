@@ -3,7 +3,6 @@ package guzek.alan.habbittracker.model;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
-
 import java.sql.Date;
 
 @Data
@@ -15,12 +14,16 @@ import java.sql.Date;
 @ToString
 public class HabitRecord {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="user_habit_id", nullable = false)
-    private UserHabit userHabit;
+    @ManyToOne
+    @JoinColumn(name="user_id", nullable = false)
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name="habit_id", nullable = false)
+    private Habit habit;
 
     @DateTimeFormat(pattern  = "dd-mm-yyyy")
     private Date date;
