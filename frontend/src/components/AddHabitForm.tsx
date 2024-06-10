@@ -1,12 +1,20 @@
+import { useMutation } from "@apollo/client";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ADD_HABIT } from "../graphql/queries";
 
 
 const AddHabitForm = () => {
     const navigate = useNavigate();
 
+    const [addHabit, {loading, error}] = useMutation(ADD_HABIT);
+
+    if (loading) return 'Submitting...';
+    if (error) return `Submission error! ${error.message}`;
+
     const [formData, setFormData] = useState({
         name: '',
+        difficulty: 1,
         color: '#FFFFFF'
       });
 
@@ -20,8 +28,9 @@ const AddHabitForm = () => {
 
     const handleSubmit = (event: React.FormEvent) => {
         event.preventDefault();  
-        console.log(formData);
-        navigate('/');
+        addHabit({variables: formData});
+        // Mocked
+        navigate("/")
       };
     
 
@@ -33,7 +42,20 @@ const AddHabitForm = () => {
                   <input
                     type="text"
                     name="name"
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                    className="mt-1 block w-full rounded-md border-gray-300 shadow-md focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                    required
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div className="flex gap-2 w-full max-w-max">
+                  <label className="block text-gray-700">Difficulty:</label>
+                  <input
+                    type="number"
+                    step="1"
+                    min="1"
+                    max="10"
+                    name="difficulty"
+                    className="mt-1 block w-full rounded-md border-gray-300 shadow-md focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                     required
                     onChange={handleInputChange}
                   />

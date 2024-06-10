@@ -1,12 +1,36 @@
 import { gql } from '@apollo/client';
 
 export const GET_HABITS = gql`
-  query GetHabits {
-    habits {
+  query HabitRecords($userId: ID!, $habitId: ID!, $from: String!, $to: String!){
+    habitRecords(userId: $userId, habitId: $habitId, dateFrom: $from, dateTo: $to){
+      habit{
+        name
+        color
+        difficulty
+      }
+      date
+    }
+  }
+`;
+
+export const GET_USER_HABITS = gql`
+  query UserHabits($userId: ID!) {
+    userHabits(userId: $userId) {
       id
       name
+      difficulty
       color
-      completed
+      habitRecords{
+        date
+      }
+    }
+  }
+`;
+
+export const ADD_HABIT = gql`
+  mutation($color: String!, $name: String!, $difficulty: Int!){
+    createHabit(color: $color, difficulty: $difficulty, name: $name) {
+      id
     }
   }
 `;
