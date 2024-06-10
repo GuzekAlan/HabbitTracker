@@ -2,6 +2,7 @@ package guzek.alan.habbittracker.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+
 import java.util.Set;
 
 @Data
@@ -10,7 +11,8 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-@ToString
+@EqualsAndHashCode(exclude = {"habitRecords"})
+@ToString(exclude = {"habitRecords"})
 public class Habit {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,6 +27,6 @@ public class Habit {
     @NonNull
     private Integer difficulty;
 
-    @OneToMany(mappedBy = "habit")
+    @OneToMany(mappedBy = "habit", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<HabitRecord> habitRecords;
 }

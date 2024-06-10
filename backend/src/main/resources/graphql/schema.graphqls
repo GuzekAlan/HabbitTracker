@@ -11,14 +11,14 @@ type Habit {
     name: String!
     color: String!
     difficulty: Int!
-    habitRecords: [HabitRecord]
+    habitRecords: [HabitRecord]!
 }
 
 type User {
     id: ID!
     login: String!
     password: String!
-    habitRecords: [HabitRecord]
+    habitRecords: [HabitRecord]!
 }
 
 input HabitRecordsFilters {

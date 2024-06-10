@@ -10,7 +10,8 @@ import java.util.Set;
 @Setter
 @Entity
 @Table(name = "zti_user")
-@ToString
+@ToString(exclude = {"habitRecords"})
+@EqualsAndHashCode(exclude = {"habitRecords"})
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

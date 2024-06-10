@@ -11,17 +11,18 @@ import java.sql.Date;
 @Getter
 @Setter
 @Entity
-@ToString
+@ToString(exclude = {"habit", "user"})
+@EqualsAndHashCode(exclude = {"habit", "user"})
 public class HabitRecord {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="user_id", nullable = false)
     private User user;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="habit_id", nullable = false)
     private Habit habit;
 

@@ -12,13 +12,13 @@ public class AuthInterceptor implements HandlerInterceptor{
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        Cookie[] cookies = request.getCookies();
-        for (Cookie cookie : cookies) {
-            if(cookie.getName().equals("zti_auth")){
-                request.setAttribute("userId", cookie.getValue());
-                return true;
-            }
-        }
+        // Cookie[] cookies = request.getCookies();
+        // for (Cookie cookie : cookies) {
+        //     if(cookie.getName().equals("zti_auth")){
+        //         request.setAttribute("userId", cookie.getValue());
+        //         return true;
+        //     }
+        // }
         return true;
     }
     
