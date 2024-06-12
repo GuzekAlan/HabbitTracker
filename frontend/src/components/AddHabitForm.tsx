@@ -9,9 +9,6 @@ const AddHabitForm = () => {
 
     const [addHabit, {loading, error}] = useMutation(ADD_HABIT);
 
-    if (loading) return 'Submitting...';
-    if (error) return `Submission error! ${error.message}`;
-
     const [formData, setFormData] = useState({
         name: '',
         difficulty: 1,
@@ -33,6 +30,8 @@ const AddHabitForm = () => {
         navigate("/")
       };
     
+    if (loading) return 'Submitting...';
+    if (error) return `Submission error! ${error.message}`;
 
     return (
             <div className="p-4 w-full max-w-max">

@@ -30,7 +30,7 @@ const AddHabitButton = () => {
 
 const Calendar = () => {
     const userId = 1;
-    const [startDate, _setStartDate] = useState(moment().tz("Europe/Warsaw").startOf("isoWeek"));
+    const [startDate, setStartDate] = useState(moment().tz("Europe/Warsaw").startOf("isoWeek"));
     
     const dates = useMemo(() => {
         return Array.from(Array(7).keys()).map((i) => {
