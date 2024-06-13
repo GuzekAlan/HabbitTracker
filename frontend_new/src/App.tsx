@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import Home from "./pages/Home"
 import NotFound from "./pages/NotFound"
+import CreateHabit from "./pages/CreateHabit"
 
 
 function App() {
@@ -8,7 +9,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />}/>
-        <Route path="/add_habit" element={<Home />}/>
+        <Route path="/create_habit" element={<CreateHabit />}/>
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
