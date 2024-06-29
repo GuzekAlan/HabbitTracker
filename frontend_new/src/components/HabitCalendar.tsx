@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { Button } from "./shadcn/ui/button";
 import { Calendar } from "./shadcn/ui/calendar";
 import {
@@ -15,40 +16,31 @@ type HabitCalendarProps = {
   records: { date: string }[];
 };
 
-type HabitCalendarsProps = {
-  userHabits: HabitCalendarProps[];
-};
-
-function HabitCalendars({ userHabits }: HabitCalendarsProps) {
-  console.log(userHabits);
-  return (
-    <div className="grid gap-2">
-      {userHabits.map((userHabit) => (
-        <HabitCalendar key={userHabit.id} {...userHabit} />
-      ))}
-    </div>
-  );
-}
-
 function HabitCalendar({ habit, records }: HabitCalendarProps) {
   function removeUserHabit() {
     console.log("Remove habit");
   }
 
+  const dates = useMemo(
+    () => records.map((record) => new Date(record.date)),
+    [records]
+  );
+
   return (
     <Card style={{ borderColor: habit.color }}>
       <CardHeader>
         <CardTitle style={{ color: habit.color }}>{habit.name}</CardTitle>
-        <CardDescription className="p-2">
-          <div>Difficulty: {habit.difficulty}</div>
-          <div>Records: {records.length}</div>
+        <CardDescription>
+          Difficulty: {habit.difficulty} <br />
+          Records: {records.length}
         </CardDescription>
       </CardHeader>
       <CardContent>
         <Calendar
           mode="multiple"
-          onSelect={(v) => {
-            console.log(v);
+          selected={dates}
+          onDayClick={(date) => {
+            console.log(date);
           }}
           className="rounded-md border "
         />
@@ -62,4 +54,4 @@ function HabitCalendar({ habit, records }: HabitCalendarProps) {
   );
 }
 
-export default HabitCalendars;
+export default HabitCalendar;
