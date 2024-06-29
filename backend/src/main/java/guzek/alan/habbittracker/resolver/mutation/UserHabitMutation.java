@@ -17,4 +17,9 @@ public class UserHabitMutation {
     public UserHabit createUserHabit(@Argument Long userId, @Argument Long habitId){
         return this.userHabitService.createUserHabit(userId, habitId);
     }
+
+    @MutationMapping
+    public Boolean deleteUserHabit(@Argument Long id){
+        return this.userHabitService.deleteUserHabit(id);
+    }
 }

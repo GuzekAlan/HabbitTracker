@@ -29,6 +29,6 @@ public class UserHabit {
     @JoinColumn(name="habit_id", nullable = false)
     private Habit habit;
 
-    @OneToMany(mappedBy = "userHabit")
+    @OneToMany(mappedBy = "userHabit", cascade = CascadeType.REMOVE)
     private Set<HabitRecord> records;
 }

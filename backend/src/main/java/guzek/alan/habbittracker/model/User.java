@@ -24,6 +24,6 @@ public class User {
     @NonNull
     private String password;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     Set<UserHabit> userHabits;
 }

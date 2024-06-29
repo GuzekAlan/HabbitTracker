@@ -37,4 +37,6 @@ type Mutation {
   createHabit(name: String!, color: String!, difficulty: Int!): Habit
   createUserHabit(userId: ID!, habitId: ID!): UserHabit
   createRecord(userHabitId: ID!, date: String!): HabitRecord
+  deleteRecord(id: ID!): Boolean!
+  deleteUserHabit(id: ID!): Boolean!
 }

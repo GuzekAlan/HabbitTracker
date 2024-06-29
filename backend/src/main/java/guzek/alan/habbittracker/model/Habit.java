@@ -27,6 +27,6 @@ public class Habit {
     @NonNull
     private Integer difficulty;
 
-    @OneToMany(mappedBy = "habit", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "habit", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     private Set<UserHabit> userHabits;
 }

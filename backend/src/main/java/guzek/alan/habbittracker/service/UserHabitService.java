@@ -41,4 +41,13 @@ public class UserHabitService {
     public List<UserHabit> getUserHabits(Long userId) {
         return this.userHabitRepository.findByUser_Id(userId);
     }
+
+    public Boolean deleteUserHabit(Long id) {
+        Optional<UserHabit> userHabit = this.userHabitRepository.findById(id);
+        if(!userHabit.isPresent()) {
+            return false;
+        }
+        this.userHabitRepository.delete(userHabit.get());
+        return true;
+    }
 }

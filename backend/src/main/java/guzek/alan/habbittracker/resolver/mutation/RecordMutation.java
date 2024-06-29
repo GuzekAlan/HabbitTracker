@@ -19,4 +19,9 @@ public class RecordMutation {
         Date parsedDate = Date.valueOf(date);
         return this.recordService.createRecord(userHabitId, parsedDate);
     }
+
+    @MutationMapping
+    public Boolean deleteRecord(@Argument Long id){
+        return this.recordService.deleteRecord(id);
+    }
 }

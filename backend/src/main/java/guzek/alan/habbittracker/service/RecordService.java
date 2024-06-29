@@ -36,4 +36,14 @@ public class RecordService {
 
         return this.recordRepository.save(record);
     }
+
+    @Transactional
+    public Boolean deleteRecord(Long id) {
+        Optional<HabitRecord> record = this.recordRepository.findById(id);
+        if(!record.isPresent()) {
+            return false;
+        }
+        this.recordRepository.delete(record.get());
+        return true;
+    }
 }
