@@ -11,8 +11,8 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-@EqualsAndHashCode(exclude = {"habitRecords"})
-@ToString(exclude = {"habitRecords"})
+@EqualsAndHashCode(exclude = {"userHabits"})
+@ToString(exclude = {"userHabits"})
 public class Habit {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,6 +27,6 @@ public class Habit {
     @NonNull
     private Integer difficulty;
 
-    @OneToMany(mappedBy = "habit", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<HabitRecord> habitRecords;
+    @OneToMany(mappedBy = "habit", fetch = FetchType.EAGER)
+    private Set<UserHabit> userHabits;
 }

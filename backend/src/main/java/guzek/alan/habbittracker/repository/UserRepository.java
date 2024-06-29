@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
 public interface UserRepository extends JpaRepository<User, Long> {
     public User findByLogin(String login);
 
-    public List<User> findByHabitRecords_Habit_Id(Long habitId);
+    public List<User> findByUserHabits_Habit_Id(Long habitId);
 }

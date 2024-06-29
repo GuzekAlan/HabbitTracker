@@ -1,28 +1,31 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const GET_HABITS = gql`
-  query HabitRecords($userId: ID!, $habitId: ID!, $from: String!, $to: String!){
-    habitRecords(userId: $userId, habitId: $habitId, dateFrom: $from, dateTo: $to){
-      habit{
-        name
-        color
-        difficulty
-      }
-      date
-    }
+  query habits() {
+   id
   }
 `;
 
 export const GET_USER_HABITS = gql`
-  query UserHabits($userId: ID!) {
+  query userHabits($userId: ID!) {
     userHabits(userId: $userId) {
-      id
-      name
-      difficulty
-      color
-      habitRecords{
+      habit {
+        id
+        name
+        difficulty
+        color
+      }
+      records {
         date
       }
+    }
+  }
+`;
+
+export const LOGIN_USER = gql`
+  query authToken($login: String!, $password: String!) {
+    authToken(login: $login, password: $password) {
+      id
     }
   }
 `;

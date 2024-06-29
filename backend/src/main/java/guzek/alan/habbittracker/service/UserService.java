@@ -29,7 +29,7 @@ public class UserService {
 
     @Transactional(readOnly = true)
     public List<User> getHabitsUsers(Long habitId) {
-        return this.userRepository.findByHabitRecords_Habit_Id(habitId);
+        return this.userRepository.findByUserHabits_Habit_Id(habitId);
     }
 
     @Transactional
@@ -48,11 +48,11 @@ public class UserService {
             return null;
         }
 
-        if(hashPassword(password).equals(hashPassword(user.getPassword()))){
-            return "AUTH";
+        if(hashPassword(password).equals(user.getPassword())){
+            return user.getId().toString();
         }
 
-        return "NO AUTH";
+        return null;
     }
 
     private String hashPassword(String password) {

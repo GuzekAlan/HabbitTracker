@@ -1,19 +1,21 @@
 package guzek.alan.habbittracker.model;
 
+import java.util.Set;
+
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.format.annotation.DateTimeFormat;
-import java.sql.Date;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @Entity
+@Table(uniqueConstraints = {
+    @UniqueConstraint(columnNames = {"habit_id", "user_id"})
+})
 @ToString(exclude = {"habit", "user"})
 @EqualsAndHashCode(exclude = {"habit", "user"})
-public class HabitRecord {
+public class UserHabit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -26,6 +28,6 @@ public class HabitRecord {
     @JoinColumn(name="habit_id", nullable = false)
     private Habit habit;
 
-    @DateTimeFormat(pattern  = "dd-mm-yyyy")
-    private Date date;
+    @OneToMany(mappedBy = "userHabit")
+    private Set<Record> records;
 }

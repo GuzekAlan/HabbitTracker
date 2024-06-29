@@ -26,7 +26,7 @@ public class HabitService {
 
     @Transactional(readOnly = true)
     public List<Habit> getUserHabits(Long userID){
-        return this.habitRepository.findByHabitRecords_User_Id(userID);
+        return this.habitRepository.findByUserHabits_User_Id(userID);
     }
 
     @Transactional

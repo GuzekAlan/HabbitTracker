@@ -6,7 +6,6 @@ import jakarta.inject.Inject;
 import org.springframework.graphql.data.method.annotation.*;
 import org.springframework.stereotype.*;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class HabitQuery {
@@ -21,10 +20,5 @@ public class HabitQuery {
     @QueryMapping
     public List<Habit> userHabits(@Argument Long userId) {
         return this.habitService.getUserHabits(userId);
-    }
-
-    @QueryMapping
-    public Optional<Habit> habit(@Argument Long id) {
-        return this.habitService.getHabit(id);
     }
 }

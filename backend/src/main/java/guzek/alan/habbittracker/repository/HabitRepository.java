@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface HabitRepository extends JpaRepository<Habit, Long>{
-    public List<Habit> findByHabitRecords_User_Id(Long userId);
+    public List<Habit> findByUserHabits_User_Id(Long userId);
 }

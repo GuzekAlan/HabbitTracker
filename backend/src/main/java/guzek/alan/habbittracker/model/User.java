@@ -10,19 +10,20 @@ import java.util.Set;
 @Setter
 @Entity
 @Table(name = "zti_user")
-@ToString(exclude = {"habitRecords"})
-@EqualsAndHashCode(exclude = {"habitRecords"})
+@ToString(exclude = {"userHabits"})
+@EqualsAndHashCode(exclude = {"userHabits"})
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @NonNull
+    @Column(unique = true)
     private String login;
 
     @NonNull
     private String password;
 
     @OneToMany(mappedBy = "user")
-    Set<HabitRecord> habitRecords;
+    Set<UserHabit> userHabits;
 }
