@@ -4,6 +4,9 @@ import { Calendar } from "./shadcn/ui/calendar";
 export type HabitCalendarProps = {
   dates: Date[];
   loading: boolean;
+  name: string;
+  difficulty: number;
+  color: string;
 };
 
 function HabitCalendar({ dates, loading }: HabitCalendarProps) {
@@ -16,7 +19,7 @@ function HabitCalendar({ dates, loading }: HabitCalendarProps) {
       onSelect={(v) => {
         console.log(v);
       }}
-      className="rounded-md border"
+      className="rounded-md border "
     />
   );
 }

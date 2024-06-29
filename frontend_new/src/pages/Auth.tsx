@@ -12,27 +12,37 @@ import { useLazyQuery, useMutation } from "@apollo/client";
 import { CREATE_USER } from "@/graphql/mutations";
 import { LOGIN_USER } from "@/graphql/queries";
 import { useToast } from "@/components/shadcn/ui/use-toast";
+import { useNavigate } from "react-router";
+import useAuth from "@/hooks/useUserStore";
 
 function Auth() {
   const [createUser] = useMutation(CREATE_USER);
   const [loginUser] = useLazyQuery(LOGIN_USER);
+  const navigate = useNavigate();
+  const { logIn } = useAuth();
 
   const { toast } = useToast();
 
   function onRegister(values) {
-    createUser({ variables: values }).catch(() => {
-      toast({
-        title: "Error",
-        description: "This user already exists",
-        variant: "destructive",
+    createUser({ variables: values })
+      .then((result) => {
+        logIn(result.data.createUser.id);
+        navigate("/");
+      })
+      .catch(() => {
+        toast({
+          title: "Error",
+          description: "This user already exists",
+          variant: "destructive",
+        });
       });
-    });
   }
 
   function OnLogin(values) {
     loginUser({ variables: values })
       .then((result) => {
-        localStorage.setItem("userId", result.data.authToken);
+        logIn(result.data.authToken);
+        navigate("/");
       })
       .catch(() => {
         toast({
