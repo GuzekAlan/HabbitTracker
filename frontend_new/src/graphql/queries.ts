@@ -14,6 +14,7 @@ export const GET_HABITS = gql`
 export const GET_USER_HABITS = gql`
   query userHabits($userId: ID!) {
     userHabits(userId: $userId) {
+      id
       habit {
         id
         name
