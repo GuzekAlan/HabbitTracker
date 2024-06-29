@@ -16,9 +16,4 @@ public class HabitQuery {
     public List<Habit> habits() {
         return this.habitService.getHabits();
     }
-
-    @QueryMapping
-    public List<Habit> userHabits(@Argument Long userId) {
-        return this.habitService.getUserHabits(userId);
-    }
 }

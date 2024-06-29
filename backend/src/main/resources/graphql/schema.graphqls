@@ -2,7 +2,7 @@ type UserHabit {
   id: ID!
   user: User!
   habit: Habit!
-  records: [Record]
+  records: [HabitRecord]!
 }
 
 type Habit {
@@ -10,20 +10,20 @@ type Habit {
   name: String!
   color: String!
   difficulty: Int!
-  userHabits: [UserHabit]!
+  userHabits: [UserHabit]
 }
 
 type User {
   id: ID!
   login: String!
   password: String!
-  userHabit: [UserHabit]!
+  userHabits: [UserHabit]
 }
 
-type Record {
+type HabitRecord {
   id: ID!
   userHabit: UserHabit!
-  date: String!
+  date: String
 }
 
 type Query {
@@ -36,5 +36,5 @@ type Mutation {
   createUser(login: String!, password: String!): User
   createHabit(name: String!, color: String!, difficulty: Int!): Habit
   createUserHabit(userId: ID!, habitId: ID!): UserHabit
-  createRecord(userHabitId: ID!, date: String!): Record
+  createRecord(userHabitId: ID!, date: String!): HabitRecord
 }

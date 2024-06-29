@@ -1,6 +1,6 @@
 package guzek.alan.habbittracker.service;
 
-import guzek.alan.habbittracker.model.Record;
+import guzek.alan.habbittracker.model.HabitRecord;
 import guzek.alan.habbittracker.model.UserHabit;
 import guzek.alan.habbittracker.repository.RecordRepository;
 import guzek.alan.habbittracker.repository.UserHabitRepository;
@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Date;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class RecordService {
@@ -19,8 +20,13 @@ public class RecordService {
     @Inject UserHabitRepository userHabitRepository;
 
     @Transactional
-    public Record createRecord(Long userHabitId, Date date) {
-        Record record = new Record();
+    public Set<HabitRecord> getuserHabitRecords(Long userHabitId) {
+        return this.recordRepository.findByUserHabitId(userHabitId);
+    }
+
+    @Transactional
+    public HabitRecord createRecord(Long userHabitId, Date date) {
+        HabitRecord record = new HabitRecord();
         record.setDate(date);
         Optional<UserHabit> userHabit = this.userHabitRepository.findById(userHabitId);
         System.out.println(userHabit.isPresent());

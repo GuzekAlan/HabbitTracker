@@ -14,6 +14,7 @@ import { Button } from "@/components/shadcn/ui/button";
 import { CREATE_HABIT } from "@/graphql/mutations";
 import { useMutation } from "@apollo/client";
 import { useToast } from "@/components/shadcn/ui/use-toast";
+import { useNavigate } from "react-router";
 
 const HabitSchema = z.object({
   name: z
@@ -34,16 +35,29 @@ function CreateHabitForm() {
   });
 
   const { toast } = useToast();
-
+  const navigate = useNavigate();
   const [createHabit] = useMutation(CREATE_HABIT);
 
   function onSubmit(values: z.infer<typeof HabitSchema>) {
-    createHabit({ variables: values });
-    toast({
-      title: "Error",
-      description: "Failed to create Habit",
-      variant: "destructive",
-    });
+    createHabit({ variables: values })
+      .then((result) => {
+        if (!result.data.createHabit) {
+          toast({
+            title: "Error",
+            description: "Something went wrong",
+            variant: "destructive",
+          });
+          return;
+        }
+        navigate("/");
+      })
+      .catch(() => {
+        toast({
+          title: "Error",
+          description: "Something went wrong",
+          variant: "destructive",
+        });
+      });
   }
 
   return (

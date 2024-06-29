@@ -4,6 +4,7 @@ import java.util.Set;
 
 import jakarta.persistence.*;
 import lombok.*;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -29,5 +30,5 @@ public class UserHabit {
     private Habit habit;
 
     @OneToMany(mappedBy = "userHabit")
-    private Set<Record> records;
+    private Set<HabitRecord> records;
 }

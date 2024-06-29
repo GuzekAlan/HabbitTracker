@@ -14,7 +14,7 @@ import lombok.*;
 @Entity
 @ToString(exclude = {"userHabit"})
 @EqualsAndHashCode(exclude = {"userHabit"})
-public class Record {
+public class HabitRecord {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -24,5 +24,6 @@ public class Record {
     private UserHabit userHabit;
 
     @DateTimeFormat(pattern  = "dd-mm-yyyy")
+    @Column(nullable = false)
     private Date date;
 }
