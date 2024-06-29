@@ -8,30 +8,39 @@ import {
   TabsTrigger,
 } from "@/components/shadcn/ui/tabs";
 import AuthForm from "@/components/AuthForm";
-import { useMutation, useQuery } from "@apollo/client";
+import { useLazyQuery, useMutation } from "@apollo/client";
 import { CREATE_USER } from "@/graphql/mutations";
 import { LOGIN_USER } from "@/graphql/queries";
 import { useToast } from "@/components/shadcn/ui/use-toast";
 
 function Auth() {
   const [createUser] = useMutation(CREATE_USER);
+  const [loginUser] = useLazyQuery(LOGIN_USER);
 
   const { toast } = useToast();
 
   function onRegister(values) {
-    createUser({ variables: values }).catch((error) => {
-      console.log(error);
+    createUser({ variables: values }).catch(() => {
       toast({
         title: "Error",
-        description: "Failed to execute action",
+        description: "This user already exists",
         variant: "destructive",
       });
     });
   }
 
   function OnLogin(values) {
-    const { data } = useQuery(LOGIN_USER, { variables: values });
-    console.log(data);
+    loginUser({ variables: values })
+      .then((result) => {
+        localStorage.setItem("userId", result.data.authToken);
+      })
+      .catch(() => {
+        toast({
+          title: "Error",
+          description: "Wrong credentials",
+          variant: "destructive",
+        });
+      });
   }
 
   return (

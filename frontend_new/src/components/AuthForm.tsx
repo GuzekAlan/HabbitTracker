@@ -11,19 +11,19 @@ import {
 import { Input } from "./shadcn/ui/input";
 import { Button } from "./shadcn/ui/button";
 
-const RegisterFormSchema = z.object({
+const AuthFormSchema = z.object({
   login: z.string().min(1, { message: "Login cannot be empty" }),
   password: z.string().min(1, { message: "Password cannot be empty" }),
 });
 
 type AuthFormProps = {
-  onSubmit: (values: z.infer<typeof RegisterFormSchema>) => void;
+  onSubmit: (values: z.infer<typeof AuthFormSchema>) => void;
   buttonText: string;
 };
 
 function AuthForm(props: AuthFormProps) {
-  const form = useForm<z.infer<typeof RegisterFormSchema>>({
-    resolver: zodResolver(RegisterFormSchema),
+  const form = useForm<z.infer<typeof AuthFormSchema>>({
+    resolver: zodResolver(AuthFormSchema),
     defaultValues: {
       login: "",
       password: "",

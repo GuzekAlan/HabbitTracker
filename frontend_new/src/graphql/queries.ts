@@ -1,8 +1,13 @@
 import { gql } from "@apollo/client";
 
 export const GET_HABITS = gql`
-  query habits() {
-   id
+  {
+    habits {
+      id
+      name
+      difficulty
+      color
+    }
   }
 `;
 
@@ -24,8 +29,6 @@ export const GET_USER_HABITS = gql`
 
 export const LOGIN_USER = gql`
   query authToken($login: String!, $password: String!) {
-    authToken(login: $login, password: $password) {
-      id
-    }
+    authToken(login: $login, password: $password)
   }
 `;
