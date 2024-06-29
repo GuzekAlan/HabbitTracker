@@ -14,6 +14,9 @@ import lombok.*;
 @Entity
 @ToString(exclude = {"userHabit"})
 @EqualsAndHashCode(exclude = {"userHabit"})
+@Table(uniqueConstraints = {
+    @UniqueConstraint(columnNames = {"user_habit_id", "date"})
+})
 public class HabitRecord {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

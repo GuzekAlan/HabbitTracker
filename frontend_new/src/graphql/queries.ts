@@ -23,6 +23,7 @@ export const GET_USER_HABITS = gql`
       }
       records {
         date
+        id
       }
     }
   }

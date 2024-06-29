@@ -30,14 +30,18 @@ function AddHabit() {
         habitId: habitId,
         userId: userId(),
       },
-    }).catch((error) => {
-      console.log(error);
-      toast({
-        title: "Error",
-        description: "Failed to add habit",
-        variant: "destructive",
+    })
+      .then(() => {
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.log(error);
+        toast({
+          title: "Error",
+          description: "Failed to add habit",
+          variant: "destructive",
+        });
       });
-    });
   }
 
   if (loading) {
