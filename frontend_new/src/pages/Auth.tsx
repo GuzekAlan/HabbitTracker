@@ -26,6 +26,14 @@ function Auth() {
   function onRegister(values) {
     createUser({ variables: values })
       .then((result) => {
+        if (!result.data.createUser) {
+          toast({
+            title: "Error",
+            description: "Something went wrong",
+            variant: "destructive",
+          });
+          return;
+        }
         logIn(result.data.createUser.id);
         navigate("/");
       })
@@ -41,13 +49,21 @@ function Auth() {
   function OnLogin(values) {
     loginUser({ variables: values })
       .then((result) => {
+        if (!result.data.authToken) {
+          toast({
+            title: "Error",
+            description: "There is no such user",
+            variant: "destructive",
+          });
+          return;
+        }
         logIn(result.data.authToken);
         navigate("/");
       })
       .catch(() => {
         toast({
           title: "Error",
-          description: "Wrong credentials",
+          description: "Something went wrong",
           variant: "destructive",
         });
       });
