@@ -12,6 +12,6 @@ public class WebConfiguration implements WebMvcConfigurer {
         registry.addMapping("/**")
         .allowedMethods("*")
         .allowPrivateNetwork(true)
-        .allowedOrigins("http://localhost:5173");
+        .allowedOrigins("http://localhost:5173", "http://localhost", "http://localhsot:5175");
     }
 }
