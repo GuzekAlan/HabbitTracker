@@ -4,7 +4,6 @@ type UserHabit {
   habit: Habit!
   records: [HabitRecord]!
 }
-
 type Habit {
   id: ID!
   name: String!
@@ -12,26 +11,22 @@ type Habit {
   difficulty: Int!
   userHabits: [UserHabit]
 }
-
 type User {
   id: ID!
   login: String!
   password: String!
   userHabits: [UserHabit]
 }
-
 type HabitRecord {
   id: ID!
   userHabit: UserHabit!
   date: String
 }
-
 type Query {
   userHabits(userId: ID!): [UserHabit]
   habits: [Habit]
   authToken(login: String!, password: String!): String
 }
-
 type Mutation {
   createUser(login: String!, password: String!): User
   createHabit(name: String!, color: String!, difficulty: Int!): Habit
