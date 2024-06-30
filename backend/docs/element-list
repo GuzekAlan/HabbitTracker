@@ -1,0 +1,6 @@
+guzek.alan.habbittracker
+guzek.alan.habbittracker.model
+guzek.alan.habbittracker.repository
+guzek.alan.habbittracker.resolver.mutation
+guzek.alan.habbittracker.resolver.query
+guzek.alan.habbittracker.service

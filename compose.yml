@@ -1,4 +1,8 @@
-version: "3.8"
+networks:
+  app-network:
+    name: zti-network
+    external: true
+    driver: bridge
 
 services:
   react:
@@ -8,6 +12,7 @@ services:
       - "5175:80"
     networks:
       - app-network
+    container_name: react
 
   springboot:
     build:
@@ -16,6 +21,9 @@ services:
       - "8081:8081"
     networks:
       - app-network
+    container_name: springboot
+    depends_on:
+      - postgres-db
 
   postgres-db:
     image: postgres:latest
@@ -29,10 +37,6 @@ services:
       - "5432:5432"
     networks:
       - app-network
-
-networks:
-  app-network:
-    driver: bridge
 
 volumes:
   postgres-data:
